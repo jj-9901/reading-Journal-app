@@ -183,13 +183,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const imageInput = createElement("input", { type: "file", accept: "image/*" });
 
       imageInput.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          compressImage(file, 400, (compressedDataUrl) => {
-            info.querySelector("img").src = compressedDataUrl;
-          });
-        }
-      });
+      const file = e.target.files[0];
+      if (file) {
+        compressImage(file, 400, (compressedDataUrl) => {
+          // Update image inside card info
+          const cardImage = info.querySelector("img");
+          cardImage.src = compressedDataUrl;
+    
+          // Also update main display image in .images
+          const currentSlide = getCurrentSlide();
+          const className = Array.from(card.classList).find(cls => cls.startsWith('card-'));
+          const mainImage = currentSlide.querySelector(`.images img.${className}`);
+          if (mainImage) {
+            mainImage.src = compressedDataUrl;
+          }
+    
+          saveToLocalStorage();
+        });
+      }
+    });
+
 
       const saveBtn = createElement("button", {}, ["Save"]);
       saveBtn.addEventListener("click", () => {

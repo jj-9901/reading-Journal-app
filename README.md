@@ -12,6 +12,7 @@ A beautiful, interactive reading journal that lets you track and organize your b
 ⭐ **Rating System** - Rate books from 0-5 stars  
 📝 **Comments & Notes** - Add detailed thoughts about each book  
 📂 **Multi-slide Layout** - Organize books across multiple slides  
+📂 **Responsive** - Works on different devices through some Css properties
 💾 **Auto-save** - All data saved to browser's local storage  
 
 ## How to Use
@@ -30,9 +31,5 @@ A beautiful, interactive reading journal that lets you track and organize your b
 - Responsive design works on desktop and mobile
 - Image compression for optimal performance
 - All data persists in browser localStorage
-
-Simply open `index.html` in any modern browser to get started! No installation needed.
-
----
 
 *Note: This is a client-side only application. Data is stored in your browser.*

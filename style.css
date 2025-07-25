@@ -237,6 +237,7 @@ body{
 
 .read-more {
   margin-top: 10px;
+  display:none;
 }
 
 .popup-form {

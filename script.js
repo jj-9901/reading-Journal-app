@@ -182,6 +182,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const imageInput = createElement("input", { type: "file", accept: "image/*" });
 
+      // imageInput.addEventListener("change", (e) => {
+      //   const file = e.target.files[0];
+      //   if (file) {
+      //     compressImage(file, 400, (compressedDataUrl) => {
+      //       info.querySelector("img").src = compressedDataUrl;
+      //     });
+      //   }
+      // });
+
       imageInput.addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (file) {
@@ -192,8 +201,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
           // Also update main display image in .images
           const currentSlide = getCurrentSlide();
-          const className = Array.from(card.classList).find(cls => cls.startsWith('card-'));
-          const mainImage = currentSlide.querySelector(`.images img.${className}`);
+          // Get the unique card-X class
+          const cardClass = Array.from(card.classList).find(cls => /^card-\d+$/.test(cls));
+
+          // Use it to find the main image in this slide
+          const mainImage = currentSlide.querySelector(`.images img.${cardClass}`);
+
           if (mainImage) {
             mainImage.src = compressedDataUrl;
           }
@@ -202,7 +215,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     });
-
 
       const saveBtn = createElement("button", {}, ["Save"]);
       saveBtn.addEventListener("click", () => {
